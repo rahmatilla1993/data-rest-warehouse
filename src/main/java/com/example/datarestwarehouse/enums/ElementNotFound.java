@@ -9,7 +9,8 @@ public enum ElementNotFound {
     CATEGORY("Categoriya topilmadi"),
     PRODUCT("Product topilmadi"),
     ATTACHMENT("Fayl topilmadi"),
-    MEASUREMENT("Bunday o'lchov birligi yo'q");
+    MEASUREMENT("Bunday o'lchov birligi yo'q"),
+    USER("Foydalanuvchi topilmadi");
 
     private final String message;
 
