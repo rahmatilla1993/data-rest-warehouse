@@ -73,7 +73,8 @@ public class ProductService {
 
     private Result addingProduct(ProductDTO productDTO, boolean create, boolean edit, Integer id) {
         Product product = new Product();
-        if (create && productRepository.existsByName(productDTO.getName())) {
+        if (create && productRepository.existsByName(productDTO.getName()) ||
+                edit && productRepository.existsByIdIsNotAndName(id, productDTO.getName())) {
             return new Result("Bunday product bor", false);
         }
 
@@ -124,7 +125,37 @@ public class ProductService {
             Product product = (Product) result.getObject();
             product.setCode(generateProductCode());
             productRepository.save(product);
-            return new Result("Product qo'shildi",true);
+            return new Result("Product qo'shildi", true);
         }
+        return result;
+    }
+
+    public Result deleteProductById(Integer id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            productRepository.delete(optionalProduct.get());
+            return new Result("Product o'chirildi", true);
+        }
+        return new Result(messageProduct.getMessage(), false);
+    }
+
+    public Result editProductById(Integer id, ProductDTO productDTO) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            Result result = addingProduct(productDTO, false, true, id);
+            if (result.isSuccess()) {
+                Product editProduct = optionalProduct.get();
+                Product product = (Product) result.getObject();
+                editProduct.setAttachment(product.getAttachment());
+                editProduct.setCategory(product.getCategory());
+                editProduct.setMeasurement(product.getMeasurement());
+                editProduct.setActive(product.isActive());
+                editProduct.setName(product.getName());
+                productRepository.save(editProduct);
+                return new Result("Product o'zgartirildi", true);
+            }
+            return result;
+        }
+        return new Result(messageProduct.getMessage(), false);
     }
 }
