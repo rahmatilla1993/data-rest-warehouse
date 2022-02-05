@@ -109,7 +109,8 @@ public class InputService {
         if (result.isSuccess()) {
             Input input = (Input) result.getObject();
             input.setCode(generateCode());
-            return new Result(true, input);
+            inputRepository.save(input);
+            return new Result("Kirim qo'shildi", true);
         }
         return result;
     }

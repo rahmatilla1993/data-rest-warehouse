@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/input")
+@RequestMapping("/api/input")
 public class InputController {
 
     ElementNotFound messageInput = ElementNotFound.INPUT;

@@ -27,6 +27,5 @@ public class InputDTO {
     @NotNull(message = "factureNumber kiritilmadi")
     private String factureNumber;
 
-    @NotNull(message = "code kiritilmadi")
     private String code;
 }
