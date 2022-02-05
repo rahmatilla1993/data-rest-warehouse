@@ -53,10 +53,12 @@ public class UserService {
 
     private Result addingUser(UserDTO userDTO, boolean create, boolean edit, Integer id) {
         User user = new User();
-        if (create && userRepository.existsByPhoneNumber(userDTO.getPhoneNumber())) {
+        if (create && userRepository.existsByPhoneNumber(userDTO.getPhoneNumber()) ||
+                edit && userRepository.existsByIdIsNotAndPhoneNumber(id, userDTO.getPhoneNumber())) {
             return new Result("Bunday telefon nomeri bor", false);
         }
-        if (create && userRepository.existsByPassword(userDTO.getPassword())) {
+        if (create && userRepository.existsByPassword(userDTO.getPassword()) ||
+                edit && userRepository.existsByIdIsNotAndPassword(id, userDTO.getPassword())) {
             return new Result("Bunday parol bor", false);
         }
 
@@ -91,5 +93,25 @@ public class UserService {
             return new Result("User saqlandi", true);
         }
         return result;
+    }
+
+    public Result editUserById(Integer id, UserDTO userDTO) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            Result result = addingUser(userDTO, false, true, id);
+            if (result.isSuccess()) {
+                User editUser = optionalUser.get();
+                User user = new User();
+                editUser.setPhoneNumber(user.getPhoneNumber());
+                editUser.setPassword(user.getPassword());
+                editUser.setActive(user.isActive());
+                editUser.setLastName(user.getLastName());
+                editUser.setFirstName(user.getFirstName());
+                editUser.setWarehouses(user.getWarehouses());
+                return new Result("User o'zgartirildi", true);
+            }
+            return result;
+        }
+        return new Result(messageUser.getMessage(), false);
     }
 }
