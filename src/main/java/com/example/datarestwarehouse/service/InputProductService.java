@@ -121,4 +121,13 @@ public class InputProductService {
         }
         return new Result(messageInputProduct.getMessage(), false);
     }
+
+    public Result deleteInputProductById(Integer id) {
+        Optional<InputProduct> optionalInputProduct = inputProductRepository.findById(id);
+        if (optionalInputProduct.isPresent()) {
+            inputProductRepository.delete(optionalInputProduct.get());
+            return new Result("Kirimdagi mahsulot o'chirildi", true);
+        }
+        return new Result(messageInputProduct.getMessage(), false);
+    }
 }

@@ -60,5 +60,9 @@ public class InputProductController {
                 HttpStatus.NOT_FOUND : HttpStatus.FORBIDDEN).body(result);
     }
 
-
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> deleteInputProductById(@PathVariable Integer id) {
+        Result result = inputProductService.deleteInputProductById(id);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.ACCEPTED : HttpStatus.NOT_FOUND).body(result);
+    }
 }

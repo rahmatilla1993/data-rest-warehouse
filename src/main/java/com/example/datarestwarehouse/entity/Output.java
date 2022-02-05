@@ -17,19 +17,21 @@ public class Output {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Warehouse warehouse;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Currency currency;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Client client;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String factureNumber;
 
+    @Column(nullable = false)
     private String code;
 }

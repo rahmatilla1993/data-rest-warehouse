@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OutputRepository extends JpaRepository<Output,Integer> {
+
+    boolean existsByFactureNumber(String factureNumber);
+
+    boolean existsByIdIsNotAndFactureNumber(Integer id, String factureNumber);
 }

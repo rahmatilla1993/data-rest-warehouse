@@ -11,7 +11,9 @@ public enum ElementNotFound {
     ATTACHMENT("Fayl topilmadi"),
     MEASUREMENT("Bunday o'lchov birligi yo'q"),
     USER("Foydalanuvchi topilmadi"),
-    INPUT_PRODUCT("Kirimda kirgan mahsulot omborda mavjudmas");
+    INPUT_PRODUCT("Kirimda kirgan mahsulot omborda mavjudmas"),
+    OUTPUT("Chiqim mavjudmas"),
+    CLIENT("Mijoz mavjudmas");
 
     private final String message;
 
