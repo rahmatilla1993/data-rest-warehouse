@@ -26,5 +26,5 @@ public class OutputProduct {
     private Double price;
 
     @ManyToOne
-    private Input input;
+    private Output output;
 }

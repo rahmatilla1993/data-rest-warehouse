@@ -13,7 +13,8 @@ public enum ElementNotFound {
     USER("Foydalanuvchi topilmadi"),
     INPUT_PRODUCT("Kirimda kirgan mahsulot omborda mavjudmas"),
     OUTPUT("Chiqim mavjudmas"),
-    CLIENT("Mijoz mavjudmas");
+    CLIENT("Mijoz mavjudmas"),
+    OUTPUT_PRODUCT("Chiqimda chiqqan productlar omobrda majudmas");
 
     private final String message;
 
