@@ -16,6 +16,4 @@ public interface CategoryRepository extends JpaRepository<Category,Integer> {
     boolean existsByName(String name);
 
     boolean existsByIdIsNotAndName(Integer id, String name);
-
-    Category getByParentCategory_Id(Integer parentCategory_id);
 }

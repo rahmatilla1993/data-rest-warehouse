@@ -45,7 +45,7 @@ public class ProductService {
     @Autowired
     MeasurementRepository measurementRepository;
 
-    public Page<Product> getAllProducts(Integer page) {
+    public Page<Product> getAllProducts(int page) {
         Pageable pageable = PageRequest.of(page, 5);
         return productRepository.findAll(pageable);
     }
@@ -116,7 +116,8 @@ public class ProductService {
             return "1";
         }
         Product product = productRepository.findAll().get(size - 1);
-        return product.getId().toString();
+        int id = product.getId() + 1;
+        return Integer.toString(id);
     }
 
     public Result addProduct(ProductDTO productDTO) {

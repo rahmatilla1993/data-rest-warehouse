@@ -53,12 +53,13 @@ public class InputService {
     }
 
     private String generateCode() {
-        List<Input> allInputs = getAllInputs();
-        if (allInputs.size() == 0) {
+        int size = inputRepository.findAll().size();
+        if (size == 0) {
             return "1";
         }
-        Input input = allInputs.get(allInputs.size() - 1);
-        return input.getId().toString();
+        Input input = inputRepository.findAll().get(size - 1);
+        size = input.getId() + 1;
+        return Integer.toString(size);
     }
 
     private Result addingInput(InputDTO inputDTO, boolean create, boolean edit, Integer id) {

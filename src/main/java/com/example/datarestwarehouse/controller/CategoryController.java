@@ -33,13 +33,13 @@ public class CategoryController {
     @GetMapping("/{id}")
     public HttpEntity<?> getCategoryById(@PathVariable Integer id) {
         Result result = categoryService.getCategoryById(id);
-        return ResponseEntity.status(result.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(result);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(result);
     }
 
     @GetMapping("/byParentCategoryId/{parent_category_id}")
     public HttpEntity<?> getCategoriesByParentCategoryId(@PathVariable Integer parent_category_id) {
         List<Result> results = categoryService.getCategoriesByParentCategoryId(parent_category_id);
-        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.NO_CONTENT :
+        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.OK :
                 HttpStatus.NOT_FOUND).body(results);
     }
 
@@ -56,7 +56,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public HttpEntity<?> editCategoryById(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) {
+    public HttpEntity<?> editCategoryById(@PathVariable Integer id,@Valid @RequestBody CategoryDTO categoryDTO) {
         Result result = categoryService.editCategoryById(id, categoryDTO);
         return ResponseEntity.status(result.isSuccess() ? HttpStatus.ACCEPTED : result.getMessage().equals(messageCategory.getMessage()) ?
                 HttpStatus.NOT_FOUND : HttpStatus.CONFLICT).body(result);

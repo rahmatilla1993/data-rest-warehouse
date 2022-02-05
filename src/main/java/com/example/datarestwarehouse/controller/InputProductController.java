@@ -36,13 +36,13 @@ public class InputProductController {
     @GetMapping("/{id}")
     public HttpEntity<?> getInputProductById(@PathVariable Integer id) {
         Result result = inputProductService.getInputProductById(id);
-        return ResponseEntity.status(result.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(result);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(result);
     }
 
     @GetMapping("/byInputId/{input_id}")
     public HttpEntity<?> getInputProductsByInputId(@PathVariable Integer input_id) {
         List<Result> results = inputProductService.getInputProductsByInputId(input_id);
-        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(results);
+        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(results);
     }
 
     @PostMapping

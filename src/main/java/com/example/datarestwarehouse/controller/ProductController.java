@@ -40,13 +40,13 @@ public class ProductController {
     @GetMapping("/{id}")
     public HttpEntity<?> getProductById(@PathVariable Integer id) {
         Result result = productService.getProductById(id);
-        return ResponseEntity.status(result.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(result);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(result);
     }
 
     @GetMapping("/byCategoryId/{category_id}")
     public HttpEntity<?> getProductByCategoryId(@PathVariable Integer category_id) {
         List<Result> results = productService.getProductsByCategoryId(category_id);
-        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(results);
+        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(results);
     }
 
     @PostMapping

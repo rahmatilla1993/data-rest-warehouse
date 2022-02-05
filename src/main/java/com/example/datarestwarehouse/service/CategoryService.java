@@ -55,10 +55,15 @@ public class CategoryService {
                 edit && categoryRepository.existsByIdIsNotAndName(id, categoryDTO.getName())) {
             return new Result("Bunday category bor", false);
         }
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryDTO.getCategory_id());
+        if (!optionalCategory.isPresent()) {
+            return new Result(messageCategory.getMessage(), false);
+        }
+        Category parent_category = optionalCategory.get();
+
         category.setName(categoryDTO.getName());
         category.setActive(categoryDTO.isActive());
-        Category byParentCategory_id = categoryRepository.getByParentCategory_Id(categoryDTO.getCategory_id());
-        category.setParentCategory(byParentCategory_id);
+        category.setParentCategory(parent_category);
         return new Result(true, category);
     }
 

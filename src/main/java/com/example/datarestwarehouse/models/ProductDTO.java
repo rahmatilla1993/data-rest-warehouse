@@ -16,7 +16,6 @@ public class ProductDTO {
 
     private boolean active = true;
 
-    @NotNull(message = "code kiritilmadi")
     private String code;
 
     @NotNull(message = "category_id kiritilmadi")

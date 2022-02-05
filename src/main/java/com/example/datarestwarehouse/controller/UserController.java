@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/{id}")
     public HttpEntity<?> getUserById(@PathVariable Integer id) {
         Result result = userService.getUserById(id);
-        return ResponseEntity.status(result.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(result);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(result);
     }
 
     @PostMapping

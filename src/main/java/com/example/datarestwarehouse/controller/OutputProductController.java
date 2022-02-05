@@ -36,13 +36,13 @@ public class OutputProductController {
     @GetMapping("/{id}")
     public HttpEntity<?> getOutputProductById(@PathVariable Integer id) {
         Result result = outputProductService.getOutputProductById(id);
-        return ResponseEntity.status(result.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(result);
+        return ResponseEntity.status(result.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(result);
     }
 
     @GetMapping("/byOutputId/{output_id}")
     public HttpEntity<?> getOutputProductsByOutputId(@PathVariable Integer output_id) {
         List<Result> results = outputProductService.getOutputProductsByOutputId(output_id);
-        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(results);
+        return ResponseEntity.status(results.get(0).isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(results);
     }
 
     @PostMapping
