@@ -2,7 +2,7 @@ package com.example.datarestwarehouse.enums;
 
 public enum ElementNotFound {
 
-    INPUT("Input topilmadi"),
+    INPUT("Kirim topilmadi"),
     WAREHOUSE("Ombor topilmadi"),
     SUPPLIER("Ta'minotchi topilmadi"),
     CURRENCY("Pul birligi topilmadi"),
@@ -10,7 +10,8 @@ public enum ElementNotFound {
     PRODUCT("Product topilmadi"),
     ATTACHMENT("Fayl topilmadi"),
     MEASUREMENT("Bunday o'lchov birligi yo'q"),
-    USER("Foydalanuvchi topilmadi");
+    USER("Foydalanuvchi topilmadi"),
+    INPUT_PRODUCT("Kirimda kirgan mahsulot omborda mavjudmas");
 
     private final String message;
 

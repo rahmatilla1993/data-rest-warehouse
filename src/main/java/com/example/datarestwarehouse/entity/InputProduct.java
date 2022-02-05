@@ -29,6 +29,6 @@ public class InputProduct {
     @Column(nullable = false)
     private Date expireDate;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Input input;
 }
